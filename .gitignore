@@ -1,0 +1,17 @@
+# Zig build artifacts
+.zig-cache/
+zig-out/
+
+# Temporary files
+*.o
+*.a
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Test outputs
+test_*
+wrk*.out
+
+CLAUDE.md

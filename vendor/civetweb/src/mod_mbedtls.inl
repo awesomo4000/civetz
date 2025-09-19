@@ -21,6 +21,9 @@
 #include "mbedtls/x509_crt.h"
 #include <string.h>
 
+/* SHA1 compatibility for WebSocket support */
+#include "mbedtls_sha_compat.h"
+
 typedef mbedtls_ssl_context SSL;
 
 typedef struct {

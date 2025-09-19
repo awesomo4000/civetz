@@ -17,7 +17,15 @@ mg_sort(void *data,
 	size_t A102549[9] = {1, 4, 10, 23, 57, 132, 301, 701, 1750};
 	size_t gap, i, j, k;
 	int Aidx;
+#if defined(__NetBSD__)
+	/* NetBSD discourages alloca usage - use stack buffer for small sizes, mg_malloc for large */
+	char stack_buffer[256];
+	void *tmp = (elemsize <= sizeof(stack_buffer)) ? stack_buffer : mg_malloc(elemsize);
+	if (!tmp && elemsize > sizeof(stack_buffer)) return; /* mg_malloc failed */
+	int needs_free = (elemsize > sizeof(stack_buffer));
+#else
 	void *tmp = alloca(elemsize);
+#endif
 
 	for (Aidx = 8; Aidx >= 0; Aidx--) {
 		gap = A102549[Aidx];
@@ -43,6 +51,10 @@ mg_sort(void *data,
 			}
 		}
 	}
+
+#if defined(__NetBSD__)
+	if (needs_free) mg_free(tmp);
+#endif
 }
 
 /* end if sort.inl */
