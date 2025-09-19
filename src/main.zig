@@ -7,6 +7,7 @@ fn indexHandler(req: civetz.Request) void {
         \\<html>
         \\<head>
         \\    <title>civetz - Zig Web Framework</title>
+        \\    <meta charset="UTF-8">
         \\</head>
         \\<body>
         \\    <h1>Welcome to civetz!</h1>
